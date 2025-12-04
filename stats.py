@@ -1,30 +1,33 @@
-def get_num_words(contents):
-  words = contents.split()
-  return len(words)
+def word_count(book_content):
+  return len(book_content)
 
-def sort_on(items):
-    return items["count"]
 
-def get_chars_dict(words):
-  letterCount = {}
-  for letter in words:
+def letter_count_dictionary(book_content):
+  letter_count = {}
+  for letter in book_content:
     if letter.isalpha():
       letter = letter.lower()
-      if letter in letterCount:
-        letterCount[letter] += 1
+      if letter in letter_count:
+        letter_count[letter] += 1
       else:
-        letterCount[letter] = 1
-    else:
-      pass
-  return letterCount
+        letter_count[letter] = 1
+  return letter_count
 
-def chars_dict_to_sorted_list(num_chars_dict):
-  sorted_list = []
-  for letter in num_chars_dict:
-   count = num_chars_dict[letter]
+def letter_list(letter_count_dictionary):
+  list = []
+  for letter in letter_count_dictionary:
+    dictionary = {
+      "char": letter,
+      "count": letter_count_dictionary[letter]
+    }
+    list.append(dictionary)
+  return list
 
-   sorted_list.append({"char": letter, "count": count})
+def sort_on(items):
+  return items["count"]
 
-  sorted_list.sort(reverse=True,key=sort_on)
-
-  return sorted_list
+def counter(sorted_list):
+  dict = {}
+  for item in sorted_list:
+    dict[item["char"]] = item["count"]
+  return dict
